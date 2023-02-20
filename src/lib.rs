@@ -1,11 +1,12 @@
 use pyo3::prelude::*;
-use pyo3::types::PyDict;
+use pyo3::types::{PyByteArray, PyDict};
 use pythonize::depythonize;
 use serde_json::Value;
 use std::collections::BTreeMap;
 
 #[pyfunction]
-fn encode(payload: &PyDict) -> PyResult<Vec<u8>> {
+fn encode(payload: &PyDict) -> PyResult<&PyByteArray> {
+    let py = payload.py();
     let mut map: BTreeMap<String, Value> = BTreeMap::new();
     for (k, v) in payload {
         let key = k.to_string();
@@ -13,7 +14,8 @@ fn encode(payload: &PyDict) -> PyResult<Vec<u8>> {
         map.insert(key, value);
     }
     dbg!(map);
-    Ok(vec![])
+    let result = vec![1u8, 2, 3];
+    Ok(PyByteArray::new(py, &result))
 }
 
 #[pymodule]
