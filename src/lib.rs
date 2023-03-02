@@ -52,8 +52,7 @@ fn encode(payload: &PyDict) -> PyResult<&PyByteArray> {
 
 #[pymodule]
 fn freeasterix(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(load_category_xml, m)?)
-        .unwrap();
-    m.add_function(wrap_pyfunction!(encode, m)?).unwrap();
+    m.add_function(wrap_pyfunction!(load_category_xml, m)?)?;
+    m.add_function(wrap_pyfunction!(encode, m)?)?;
     Ok(())
 }
