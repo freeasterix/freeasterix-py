@@ -1,12 +1,28 @@
 # freeasterix-py
 Python bindings for freeasterix
 
+## Build and development
+
+```bash
+# follow instructions on https://rustup.rs/ to install Rust toolchain (once)
+# install dev dependencies (once)
+$ python -m pip install requirements-dev.txt
+# install package locally for development (optional)
+$ python setup.py develop
+# build a "release" version of the package
+$ python setup.py build
+# make distributable package
+$ python setup.py bdist_wheel
+```
+
 ## Example
 
 ```python
 from freeasterix import AxConverter
 from binascii import hexlify
 
+# specify directory to load XML specifications from
+# the directory must not contain other files
 converter = AxConverter('../spec')
 
 packet_data = {
