@@ -2,9 +2,6 @@
 
 import freeasterix
 
-freeasterix.load_category_xml(
-    '/opt/freeasterix/specs-xml/asterix_cat062_1_18.xml')
-
 payload = {
     "CAT": 62,
     "010": {
@@ -51,6 +48,19 @@ payload = {
     }
 }
 
-result = freeasterix.encode(payload)
+class AxConverter():
+    def __init__(self, directory, files):
+        self._capsule = freeasterix.create_converter(directory, files)
+    def encode(self, json):
+        return freeasterix.encode(self._capsule, json)
+    def decode(self, data):
+        return freeasterix.decode(self._capsule, data)
+
+spec_files = {
+    62: 'asterix_cat062_1_18.xml',
+}
+converter = AxConverter('/opt/freeasterix/specs-xml', spec_files)
+serialized = converter.encode(payload)
+
 import asterix
-print(asterix.parse(result))
+print(asterix.parse(serialized))
