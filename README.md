@@ -1,6 +1,51 @@
 # freeasterix-py
 Python bindings for freeasterix
 
+## Quick start
+
+On Debian/Ubuntu systems, execute:
+
+```bash
+apt -y install python3-pip
+```
+
+on other systems refer to system documentation how to setup Python3 and
+Python3-pip.
+
+### Install from wheel
+
+Download a provided wheel package, then execute:
+
+```bash
+pip3 install ./freeasterix-0.1.0-cp310-cp310-linux_x86_64.whl
+```
+
+### Install from sources
+
+Install [setuptools-rust](https://pypi.org/project/setuptools-rust/) and [Rust
+compiler](https://www.rust-lang.org/tools/install):
+
+```bash
+pip3 install setuptools_rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh /dev/stdin -y -c rustc
+source "$HOME/.cargo/env"
+```
+
+Until the primary repo is opened for public: make sure you have access to
+<https://github.com/freeasterix/freeasterix> and have GitHub ssh key set-up:
+
+```
+ssh -T git@github.com
+```
+
+Build and install the module:
+
+```bash
+git clone https://github.com/freeasterix/freeasterix-py
+cd freeasterix-py
+python3 setup.py install
+```
+
 ## Build and development
 
 ```bash
