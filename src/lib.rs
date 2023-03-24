@@ -1,58 +1,72 @@
-use obj2asterix::write_asterix;
-use once_cell::sync::Lazy;
-use pyo3::exceptions::{PyKeyError, PyRuntimeError, PyValueError};
-use pyo3::prelude::*;
-use pyo3::types::{PyByteArray, PyDict};
-use pythonize::depythonize;
-use serde::Deserialize;
 use serde_json::{Map, Value};
-use spec_parser::spec_xml::Category;
+use pyo3::prelude::*;
+use pyo3::exceptions::PyValueError;
+use pyo3::types::{PyByteArray, PyDict, PyString, PyCapsule};
+use pythonize::{pythonize, depythonize};
 use std::collections::BTreeMap;
-use std::fs;
-use std::sync::RwLock;
+use std::ffi::CString;
+use spec_parser::spec_xml::Category;
+use obj2asterix::{read_asterix, write_asterix};
 
-static CATEGORIES: Lazy<RwLock<BTreeMap<u8, Category>>> = Lazy::new(<_>::default);
+struct Converter {
+    mapping: BTreeMap<u8, Category>,
+}
 
-#[pyfunction]
-fn load_category_xml(path: &str) -> PyResult<()> {
-    let xml = fs::read_to_string(path)?;
-    let category = Category::parse(&xml).map_err(|e| PyValueError::new_err(e.to_string()))?;
-    CATEGORIES.write().unwrap().insert(category.id, category);
-    Ok(())
+fn map_py_err<E: std::error::Error>(error: E) -> PyErr {
+    PyValueError::new_err(error.to_string())
 }
 
 #[pyfunction]
-fn encode(payload: &PyDict) -> PyResult<&PyByteArray> {
+fn create_converter(directory: &PyString) -> PyResult<&PyCapsule> {
+    let py = directory.py();
+    let directory = directory.to_str()?;
+    let mut converter = Converter { mapping: Default::default() };
+    for entry in std::fs::read_dir(directory)? {
+        let entry = entry?;
+        let spec_src = std::fs::read_to_string(entry.path())?;
+        let category = Category::parse(&spec_src).map_err(map_py_err)?;
+        converter.mapping.insert(category.id, category);
+    }
+    let name = CString::new("AxConveter").unwrap();
+    let capsule = PyCapsule::new(py, converter, Some(name))?;
+    Ok(capsule)
+}
+
+#[pyfunction]
+fn encode<'a>(conveter: &'a PyCapsule, payload: &'a PyDict) -> PyResult<&'a PyByteArray> {
     let py = payload.py();
-    let mut map: Map<String, Value> = <_>::default();
-    let mut category_id: Option<u8> = None;
-    for (k, v) in payload {
-        let key = k.to_string();
-        let value: Value = depythonize(v)?;
-        if key == "CAT" {
-            category_id.replace(
-                u8::deserialize(&value).map_err(|e| PyValueError::new_err(e.to_string()))?,
-            );
-        }
-        map.insert(key, value);
-    }
-    let mut result = Vec::new();
-    if let Some(ref cat_id) = category_id {
-        let categories = CATEGORIES.read().unwrap();
-        let spec = categories
-            .get(cat_id)
-            .ok_or_else(|| PyKeyError::new_err("category not loaded"))?;
-        write_asterix(&mut result, spec, &map)
-            .map_err(|e| PyRuntimeError::new_err(e.to_string()))?;
-        Ok(PyByteArray::new(py, &result))
-    } else {
-        Err(PyValueError::new_err("category ID is missing (CAT field)"))
-    }
+    let map: Map<String, Value> = depythonize(payload)?;
+    let category: u8 = map.get("CAT")
+        .ok_or_else(|| PyValueError::new_err("Dict must contain CAT with category"))?
+        .as_u64()
+        .ok_or_else(|| PyValueError::new_err("Category must be a number"))?
+        .try_into()?;
+    let conveter = unsafe { conveter.reference::<Converter>() };
+    let spec = conveter.mapping.get(&category)
+        .ok_or_else(|| PyValueError::new_err(format!("unknown category {category}")))?;
+    let mut buf = Vec::new();
+    write_asterix(&mut buf, &spec, &map).map_err(map_py_err)?;
+    Ok(PyByteArray::new(py, &buf))
+}
+
+#[pyfunction]
+fn decode<'a>(conveter: &'a PyCapsule, data: &'a PyByteArray) -> PyResult<PyObject> {
+    let py = conveter.py();
+    let mut reader = unsafe { data.as_bytes() };
+    let category = *reader.get(0)
+        .ok_or_else(|| PyValueError::new_err("ByteArray is too short"))?;
+    let conveter = unsafe { conveter.reference::<Converter>() };
+    let spec = conveter.mapping.get(&category)
+        .ok_or_else(|| PyValueError::new_err(format!("unknown category {category}")))?;
+    let value = read_asterix(&mut reader, &spec).map_err(map_py_err)?;
+    let pythonic = pythonize(py, &Value::Object(value))?;
+    Ok(pythonic)
 }
 
 #[pymodule]
 fn freeasterix(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(load_category_xml, m)?)?;
-    m.add_function(wrap_pyfunction!(encode, m)?)?;
+    m.add_function(wrap_pyfunction!(encode, m)?).unwrap();
+    m.add_function(wrap_pyfunction!(decode, m)?).unwrap();
+    m.add_function(wrap_pyfunction!(create_converter, m)?).unwrap();
     Ok(())
 }
