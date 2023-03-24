@@ -7,7 +7,7 @@ setup(
     rust_extensions=[
         RustExtension("freeasterix.freeasterix", binding=Binding.PyO3)
     ],
-    packages=["."],
+    packages=["freeasterix"],
     # rust extensions are not zip safe, just like C-extensions.
     zip_safe=False,
 )
