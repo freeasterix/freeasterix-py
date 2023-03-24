@@ -27,6 +27,7 @@ compiler](https://www.rust-lang.org/tools/install):
 
 ```bash
 pip3 install setuptools_rust
+apt -y install --no-install-recommends build-essential
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh /dev/stdin -y -c rustc
 source "$HOME/.cargo/env"
 ```
