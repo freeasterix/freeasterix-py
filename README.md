@@ -6,7 +6,7 @@ Python bindings for freeasterix
 On Debian/Ubuntu systems, execute:
 
 ```bash
-apt -y install python3-pip
+apt -y install --no-install-recommends python3-pip
 ```
 
 on other systems refer to system documentation how to setup Python3 and
