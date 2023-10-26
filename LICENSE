@@ -1,21 +1,178 @@
-MIT License
+LICENSE AGREEMENT
 
-Copyright (c) 2023 freeasterix
+THIS LICENCE AGREEMENT ("Agreement") sets forth the terms and conditions
+governing the utilization of the Licensed Software, available for download from
+the Development Platform. By downloading the Licensed Software, the Developer
+acknowledges their acceptance of this Agreement. It is advised that careful
+consideration be given to this Agreement before proceeding with the software
+download. In the event that the Developer does not assent to the terms herein,
+they must refrain from downloading or using the Licensed Software. If the
+software is being downloaded on behalf of an entity or another party, the
+Developer hereby warrants that they are authorized to bind such entity or party
+to the terms of this Agreement.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+DEFINITIONS
+1.1. "Developer Application" pertains to the software or hardware, along with
+related documentation, intended for integration with the Licensed Software.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1.2. "Developer" denotes the individual or entity responsible for the download
+of the Licensed Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1.3. "Development Platform" designates the platform, such as GitHub
+(github.com), or any other specified software development platform, from which
+the Licensed Software is obtainable.
+
+1.4. "Effective Date" is the date of download of the Licensed Software from the
+Development Platform.
+
+1.5. "Licensed Software" signifies the proprietary software product, provided
+in both source and object code, developed by Bohemia Automation Ltd. and
+contractors ("Company") and made available for download on the Development
+Platform. This software serves communication functions.
+
+1.6. "Purpose" encompasses activities related to the integration of the
+Licensed Software with Developer Application(s), with a specific focus on
+non-commercial and non-production objectives, including but not limited to
+evaluation, research, teaching, and training.
+
+LICENCE
+
+2.1. Delivery of Licensed Software
+
+The Licensed Software is accessible for download via the Development Platform.
+
+2.2. Licence Grant
+
+Company extends to the Developer a personal, perpetual, revocable, limited,
+non-exclusive, non-sublicensable, and non-transferable license. This license
+permits the access, use, download, and installation of the Licensed Software
+solely for the Purpose outlined herein, subject to all provisions within this
+Agreement. Company reserves the right to modify features or attributes of any
+version of the Licensed Software at its discretion. Unless an alternate
+agreement is reached in accordance with Section 2.4, Developer is prohibited
+from distributing or sublicensing any part of the Licensed Software.
+Furthermore, Developer may not disclose or publish benchmarking results
+regarding the performance of the Licensed Software.
+
+2.3. Non-Commercial and Non-Production Use
+
+It is expressly clarified that the Purpose excludes any form of commercial or
+production use. Developer may not employ the Licensed Software in a manner that
+generates revenue or any form of compensation. Additionally, the Licensed
+Software is not suitable for use in production environments; its use is limited
+to non-production contexts, such as testing, teaching, training, and research
+and development. A production environment is defined as one in which the
+Licensed Software is operational and relied upon for organizational or
+commercial functions. If Developer intends to use the Licensed Software for
+commercial and production purposes, a distinct license must be obtained from
+Company in accordance with Section 2.4.
+
+2.4. Commercial Licence
+
+Developers wishing to utilise the Licensed Software for commercial and
+production purposes should contact Company through the following means:
+
+Email: ho@bohemia-automation.com
+Website: https://www.bohemia-automation.com/
+
+Company is not obligated to enter into a commercial and production agreement
+with any Developer.
+
+2.5. Company Support
+
+This license does not entitle the Developer to receive support, telephone
+assistance, or updates to the Licensed Software, which Company may provide at
+its discretion. Developer may submit tickets and feedback via the Development
+Platform, and Company will make reasonable efforts to respond to such
+communications. However, Company is not obliged to do so and retains the right
+to discontinue support at any time.
+
+OWNERSHIP
+
+3.1. Company Retains Title to Licensed Software
+
+Apart from the licence granted herein, no rights to patents, copyrights, trade
+secrets, trade names, trademarks (registered or unregistered), or any other
+Intellectual Property Rights related to the Licensed Software are conferred to
+the Developer. Company retains complete ownership and title of the Licensed
+Software, including all Intellectual Property Rights.
+
+3.2. Feedback
+
+Any feedback provided by the Developer concerning the Licensed Software is
+considered non-confidential. Company may utilize and exploit such feedback
+without the obligation to provide notice or compensation to the Developer.
+
+TERM AND TERMINATION
+4.1. Term and Termination of Agreement
+
+This Agreement commences on the Effective Date and remains in effect unless
+terminated as provided herein. The Agreement will terminate automatically if
+the Developer materially breaches its terms, including the non-commercial and
+non-production use restrictions outlined in Section 2.3.
+
+4.2. Obligations on Termination
+
+Upon termination of this Agreement, all rights and licenses granted to the
+Developer are revoked. The Developer must cease any use of the Licensed
+Software, including the deletion of any copies, modifications, or embedded code
+related to the Licensed Software within the Developer Application. The
+Developer shall certify in writing to Company that no further use of the
+Licensed Software or its derivatives is ongoing.
+
+4.3. Survival
+
+Provisions of this Agreement necessary for its purpose shall endure even after
+its termination or expiration.
+
+WARRANTY DISCLAIMER THE LICENSED SOFTWARE IS OFFERED ON AN "AS IS" BASIS.
+COMPANY PROVIDES NO OTHER EXPRESS WARRANTIES, WHETHER WRITTEN OR ORAL, AND
+EXPLICITLY EXCLUDES ALL OTHER WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+NONINFRINGEMENT, AND ANY OTHER WARRANTY ARISING FROM STATUTE, LAW, CUSTOM, OR
+USAGE OF TRADE.
+
+LIMITATIONS OF LIABILITY AND INDEMNITIES
+
+6.1. Limits of Liability
+
+Company bears no liability to the Developer for special, consequential,
+exemplary, incidental, or indirect damages, including, but not limited to, loss
+of profits, revenues, data, or use, arising from or related to this Agreement
+or the use or performance of the Licensed Software, even if the possibility of
+such damages has been communicated. The total liability of Company under this
+Agreement will not exceed $10. The Developer may not bring any claim arising
+from this Agreement more than twelve (12) months after the claim's accrual.
+
+6.2. Developer Indemnity
+
+Developer shall indemnify, defend, and hold Company harmless from all losses,
+costs, liabilities, and expenses resulting from any claim (excluding claims
+that the Licensed Software infringes third-party intellectual property)
+stemming from Developer’s actions or omissions. For Developer's indemnification
+obligations to apply, the following conditions must be met: (i) Company has
+received prompt written notice from Developer regarding such claims (with any
+delay not diminishing Developer's indemnity obligations except to the extent it
+prejudices Developer's ability to defend the claim); (ii) Developer has
+exclusive control over the defense and negotiation of such claims; and (iii)
+Company reasonably cooperates with Developer in the defense or settlement of
+such claims at Developer's expense.
+
+GENERAL
+
+7.1. Entire Agreement
+
+The terms herein constitute the full Agreement between the parties pertaining
+to the subject matter herein and supersede all prior oral or written
+communications and agreements.
+
+7.2. Equitable Relief
+
+Company may be entitled to equitable relief, including injunctive relief, for
+any breach or anticipated breach of this Agreement, without diminishing other
+rights and remedies.
+
+7.3. Compliance with Laws
+
+Developer must comply with all applicable laws and secure any required
+
